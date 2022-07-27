@@ -4,30 +4,30 @@
 @section('content')
 <section>
     <div class="container mt-4">
-        <h1>Tambah Siswa</h1>
+        <h1>Edit Siswa</h1>
         <div class="row">
             <div class="col-lg-8">
-                <form action="{{url('/store')}}" method="POST">
+                <form action="{{url('/siswa/update/'. $data->id)}}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="nama">Nama Siswa</label>
-                        <input for="nama" type="text" class="form-control" name="nama" placeholder="Zoe Mohamed"></label>
+                        <input for="nama" type="text" class="form-control" name="nama" placeholder="Zoe Mohamed" value="{{$data->nama}}"></label>
                     </div>
                     <div class="form-group">
                         <label for="kelas">Kelas</label>
-                        <input for="kelas" type="text" class="form-control" name="kelas" placeholder="XII RPL"></label>
+                        <input for="kelas" type="text" class="form-control" name="kelas" placeholder="XII RPL" value="{{$data->kelas}}"></label>
                     </div>
                     <div class="form-group">
                         <label for="nis">NIS</label>
-                        <input for="nis" type="number" class="form-control" name="nis" placeholder="12096"></label>
+                        <input for="nis" type="number" class="form-control" name="nis" placeholder="12096" value="{{$data->nis}}"></label>
                     </div>
 
                     <div class="form-group mt-2">
-                       <button type="submit" class="form-control btn btn-primary">Tambah Siswa</button>
+                       <button type="submit" class="form-control btn btn-primary">Edit Siswa</button>
                     </div>
 
                     <div class="form-group mt-2">
-                       <a href="{{url('/')}}">
+                       <a href="{{url('/siswa')}}">
                            Kembali Ke halaman Utama
                        </a>
 

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Siswa;
+use App\Models\Seragam;
 
-class SiswaController extends Controller
+
+class SeragamController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +15,13 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $data = Siswa::all();
-        return view('siswa.index')->with([
-            "datas" => $data
-        ]);
+
+    $data = Seragam::all();
+      return view('seragam.index')->with(
+          [
+              "datas" => $data
+          ]
+      );
     }
 
     /**
@@ -27,8 +31,8 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        $data = Siswa::all();
-        return view('siswa.create');
+        $data = Seragam::all();
+        return view('seragam.create');
     }
 
     /**
@@ -40,8 +44,8 @@ class SiswaController extends Controller
     public function store(Request $request)
     {
         $data = $request->except(['_token']);
-        Siswa::insert($data);
-        return redirect('/siswa');
+        Seragam::insert($data);
+        return redirect('/seragam');
     }
 
     /**
@@ -52,20 +56,10 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        $data = Siswa::findOrFail($id);
-        return view('siswa.show')->with([
+        $data = Seragam::findOrFail($id);
+        return view('seragam.show')->with([
             "data" => $data
         ]);
-    }
-
-
-    public function search(Request $request){
-        $query = '%' . $request->cari . '%';
-
-        $datas = Siswa::where('nama','like',$query)->orWhere('kelas','like',$query)->orWhere('nis','like',$query)->get();
-         
-        return view('/siswa',compact("datas"));
-
     }
 
     /**
@@ -88,14 +82,13 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $item = Siswa::findOrFail($id);
+        $item = Seragam::findOrFail($id);
         $data = $request->except(['_token']);
 
         $item->update($data);
 
 
-        return redirect('/siswa');
-
+        return redirect('/seragam');
     }
 
     /**
@@ -106,12 +99,10 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-
-        
-        $data = Siswa::findOrFail($id);
+        $data = Seragam::findOrFail($id);
 
         $data->delete();
 
-        return redirect('/siswa');
+        return redirect('/seragam');
     }
 }

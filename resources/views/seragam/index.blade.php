@@ -6,8 +6,8 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-8">
-            <h1>Crud Laravel</h1>
-           <a href="{{url('/create')}}" class="btn btn-primary">Tambah siswa</a>
+            <h1>CRUD Seragam</h1>
+           <a href="{{url('/seragam/create')}}" class="btn btn-primary">Tambah Seragam</a>
         </div>
 
 
@@ -15,9 +15,9 @@
            <table class="table table-bordered">
                <tr>
                    <th>No</th>
-                   <th>Nama</th>
-                   <th>Kelas</th>
-                   <th>NIS</th>
+                   <th>Jenis Seragam</th>
+                   <th>Ukuran Seragam</th>
+                   <th>Harga Seragam</th>
                    <th>Action</th>
                </tr>
 
@@ -28,20 +28,20 @@
                </td>
 
                <td>
-    {{$data->nama}}
+    {{$data->jenis_seragam}}
                </td>
 
                <td>
-    {{$data->kelas}}
+    {{$data->ukuran}}
                </td>
 
                <td>
-    {{$data->nis}}
+    {{$data->harga}}
                </td>
 
                <td>
-                   <a href="{{url('/show/'.$data->id)}}" class="btn btn-warning">Edit</a>
-                   <a href="{{url('/destroy/'.$data->id)}}" class="btn btn-danger">Delete</a>
+                   <a href="{{url('/seragam/show/'.$data->id)}}" class="btn btn-warning">Edit</a>
+                   <a href="{{url('/seragam/destroy/'.$data->id)}}" class="btn btn-danger">Delete</a>
                </td>
 
 </tr>
