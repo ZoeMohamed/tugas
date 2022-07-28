@@ -15,9 +15,9 @@ class CreateSiswaTable extends Migration
     {
         Schema::create('siswa', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->nullable();
-            $table->string('kelas')->nullable();
-            $table->integer('nis')->nullable();
+            $table->string('nama');
+            $table->string('kelas');
+            $table->integer('nis');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateSiswaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('siswa');
+        Schema::dropIfExist('siswa');
     }
 }

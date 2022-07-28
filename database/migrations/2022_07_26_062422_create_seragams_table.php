@@ -15,9 +15,9 @@ class CreateSeragamsTable extends Migration
     {
         Schema::create('seragams', function (Blueprint $table) {
             $table->id();
-            $table->string('jenis_seragam')->nullable();
-            $table->string('ukuran')->nullable();
-            $table->integer('harga')->nullable();
+            $table->string('jenis_seragam');
+            $table->string('ukuran');
+            $table->integer('harga');
             $table->softDeletes();
             $table->timestamps();
 

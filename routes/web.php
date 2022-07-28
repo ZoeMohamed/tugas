@@ -14,7 +14,6 @@ use App\Http\Controllers\SeragamController;
 |
 */
 
-Route::get('/seragam',[SeragamController::class,'index']);
 
 // Create routers
 Route::group(['prefix' => "siswa"],function(){
@@ -25,14 +24,22 @@ Route::group(['prefix' => "siswa"],function(){
     Route::post('/store',[SiswaController::class,'store']);
     
     Route::get('/show/{id}',[SiswaController::class,'show']);
+
     
     
     Route::post('/update/{id}',[SiswaController::class,'update']);
     
+    Route::get('/search',[SiswaController::class,'search']);
+    
+    Route::get('/sort',[SiswaController::class,'sort']);
+
+    Route::get('/filter',[SiswaController::class,'filter']);
     
     Route::get('/destroy/{id}',[SiswaController::class,'destroy']);
     
 });
+
+
 
 // Create routers
 Route::group(['prefix' => "seragam"],function(){
@@ -41,6 +48,9 @@ Route::group(['prefix' => "seragam"],function(){
     Route::get('/create',[SeragamController::class,'create']);
 
     Route::post('/store',[SeragamController::class,'store']);
+
+    Route::get('/search',[SeragamController::class,'search']);
+
     
     Route::get('/show/{id}',[SeragamController::class,'show']);
     
@@ -49,5 +59,11 @@ Route::group(['prefix' => "seragam"],function(){
     
     
     Route::get('/destroy/{id}',[SeragamController::class,'destroy']);
+
+    Route::get('/search',[SeragamController::class,'search']);
+    Route::get('/sort',[SeragamController::class,'sort']);
+    Route::get('/filter',[SeragamController::class,'filter']);
+
+
     
 });

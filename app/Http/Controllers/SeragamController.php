@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Seragam;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class SeragamController extends Controller
@@ -45,6 +46,8 @@ class SeragamController extends Controller
     {
         $data = $request->except(['_token']);
         Seragam::insert($data);
+        Alert::success('Success','Data berhasil Ditambahkan');
+
         return redirect('/seragam');
     }
 
@@ -62,6 +65,8 @@ class SeragamController extends Controller
         ]);
     }
 
+    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -73,6 +78,66 @@ class SeragamController extends Controller
         //
     }
 
+    public function search(Request $request){
+        $query = '%' . $request->cari . '%';
+
+        $datas = Seragam::where('jenis_seragam','like',$query)->orWhere('ukuran','like',$query)->orWhere('harga','like',$query)->get();
+         
+        return view('seragam.index',compact("datas"));
+
+    }
+
+    public function sort(Request $request){
+
+        if($request->has('sort_seragam') ){
+            if ($request->sort_seragam == "ASC"){
+                $datas = Seragam::orderBy('jenis_seragam',$request->sort_seragam)->get();
+                return view('seragam.index',compact("datas"));
+
+                
+            }else if($request->sort_seragam == "DESC"){
+                $datas = Seragam::orderBy('jenis_seragam',$request->sort_seragam)->get();
+                return view('seragam.index',compact("datas"));
+
+            } 
+        }
+        else if($request->has('sort_ukuran')){
+
+
+        }if($request->sort_ukuran == "ASC"){
+            $datas = Seragam::orderBy('ukuran',$request->sort_ukuran)->get();
+            return view('seragam.index',compact("datas"));
+
+        }else if($request->sort_ukuran == "DESC"){
+            $datas = Seragam::orderBy('ukuran',$request->sort_ukuran)->get();
+            return view('seragam.index',compact("datas"));
+
+        }
+
+        else if($request->has('sort_harga')){
+        }if($request->sort_harga == "ASC"){
+            $datas = Seragam::orderBy('harga',$request->sort_harga)->get();
+            return view('seragam.index',compact("datas"));
+
+        }else if($request->sort_harga == "DESC"){
+            $datas = Seragam::orderBy('harga',$request->sort_harga)->get();
+            return view('seragam.index',compact("datas"));
+
+        
+        }
+    }
+
+    public function filter(Request $request){
+
+        if($request->has('filter')){
+            $query = $request->filter;
+            $datas = Seragam::where('ukuran','=',$query)->get();
+            return view('seragam.index',compact('datas'));
+        }else{
+            return view('seragam.index');
+        }
+
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -86,6 +151,8 @@ class SeragamController extends Controller
         $data = $request->except(['_token']);
 
         $item->update($data);
+
+        Alert::success('Success','Data berhasil Diupdate');
 
 
         return redirect('/seragam');
@@ -102,6 +169,8 @@ class SeragamController extends Controller
         $data = Seragam::findOrFail($id);
 
         $data->delete();
+
+        Alert::success('Success','Data Berhasil terhapus');
 
         return redirect('/seragam');
     }
